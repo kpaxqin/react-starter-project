@@ -1,7 +1,8 @@
 import React from 'react'
 import {Route, IndexRoute} from 'react-router'
 import Login from './login/Login.jsx'
-import Dashboard from './dashboard/Index.jsx';
+import Dashboard from './dashboard'
+import App from './App'
 
 const routes = (
   <Route
