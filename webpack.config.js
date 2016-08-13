@@ -4,24 +4,19 @@
 var path = require('path');
 var webpack = require('webpack');
 var config = require('config');
-
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
-  devserver: {
-    hostname: '0.0.0.0',
-    port: '3000'
-  },
   entry: [
     './src/index.jsx'
   ],
   output: {
-    path: path.join(__dirname, '_dist'),
-    filename: 'bundle.js',
-    publicPath: '/_dist/',
-    chunkFilename: "[hash].js"
+    path: path.join(__dirname, '_dist/'),
+    filename: 'bundle-[hash].js',
+    publicPath: '/assets/',
+    chunkFilename: "[name]-[hash].js"
   },
   module: {
     loaders: [{
@@ -47,7 +42,13 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-    'process.env.config': JSON.stringify(config)
-  })]
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.config': JSON.stringify(config)
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'src/index.tpl.html',
+      inject: false
+    })
+  ]
 };
