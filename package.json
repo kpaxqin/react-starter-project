@@ -4,8 +4,12 @@
   "description": "",
   "scripts": {
     "start": "node server.js",
-    "build": "rimraf ./_dist && NODE_ENV=production webpack --config webpack.prod.config.js",
-    "unit-test": "mocha --compilers .:babel-register --require test/setup.js --recursive src/**/*.specs.js"
+    "build": "npm run clean && NODE_ENV=production webpack --config webpack.prod.config.js",
+    "pretest": "npm run lint",
+    "test": "npm run unit-test",
+    "clean": "rimraf ./_dist",
+    "lint": "eslint 'src/**/*.js?(x)'",
+    "unit-test": "mocha --compilers .:babel-register --require test/setup.js --recursive src/**/*.specs.*"
   },
   "author": "kpaxqin",
   "license": "MIT",
@@ -40,6 +44,11 @@
     "config": "^1.16.0",
     "css-loader": "^0.23.0",
     "enzyme": "^2.3.0",
+    "eslint": "^3.3.0",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-plugin-import": "^1.13.0",
+    "eslint-plugin-jsx-a11y": "^2.1.0",
+    "eslint-plugin-react": "^6.0.0",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.22.0",
     "jsdom": "^9.2.1",
