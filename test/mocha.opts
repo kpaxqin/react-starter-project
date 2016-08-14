@@ -1,0 +1,6 @@
+--compilers js:babel-register,jsx:babel-register
+--extensions js,jsx
+--require test/unit/setup.js
+--recursive
+--ui bdd
+src/**/*.specs.*
