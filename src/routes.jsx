@@ -1,23 +1,23 @@
-import React from 'react'
-import {Route, IndexRoute} from 'react-router'
-import Login from './login/Login.jsx'
-import Dashboard from './dashboard'
-import App from './App'
+import React from 'react';
+import { Route, IndexRoute } from 'react-router';
+import Login from './login/Login.jsx';
+import Dashboard from './dashboard';
+import App from './App';
 
 const routes = (
   <Route
-    path='/'
+    path="/"
     component={App}
-    >
+  >
     <Route
-      path='login'
+      path="login"
       component={Login}
-      />
+    />
     <Route
-      path='dashboard'
+      path="dashboard"
       component={Dashboard}
-      />
-    <IndexRoute component={Login}/>
+    />
+    <IndexRoute component={Login} />
   </Route>
 );
 

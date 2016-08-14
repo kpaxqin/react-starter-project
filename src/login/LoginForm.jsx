@@ -1,30 +1,30 @@
-import React, {Component, PropTypes} from 'react'
-import {FormControl as Input, FormGroup, Button} from 'react-bootstrap'
-import {reduxForm} from 'redux-form'
+import React from 'react';
+import { FormControl as Input, FormGroup, Button } from 'react-bootstrap';
+import { reduxForm, propTypes } from 'redux-form';
 
-class LoginForm extends Component {
-  render() {
-    const {fields: {name}, handleSubmit } = this.props;
+function LoginForm() {
+  const { fields: { name }, handleSubmit } = this.props;
 
-    return (
-      <form onSubmit={handleSubmit}>
-        <FormGroup validationState={name.error? 'error': undefined}>
-          <Input
-            type='text'
-            label='name'
-            value={name.value || ''}
-            onChange={name.onChange}
-          />
-        </FormGroup>
-        <Button
-          type='submit'
-          >
-          submit
-        </Button>
-      </form>
-    );
-  }
+  return (
+    <form onSubmit={handleSubmit}>
+      <FormGroup validationState={name.error ? 'error' : undefined}>
+        <Input
+          type="text"
+          label="name"
+          value={name.value || ''}
+          onChange={name.onChange}
+        />
+      </FormGroup>
+      <Button
+        type="submit"
+      >
+        submit
+      </Button>
+    </form>
+  );
 }
+
+LoginForm.propTypes = propTypes;
 
 const ReduxLoginForm = reduxForm({
   form: 'login',
@@ -36,7 +36,8 @@ const ReduxLoginForm = reduxForm({
     }
 
     return errors;
-  }
+  },
 })(LoginForm);
 
-export default ReduxLoginForm
+export default ReduxLoginForm;
+
