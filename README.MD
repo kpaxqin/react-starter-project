@@ -1,4 +1,8 @@
-# Redux example
+Redux example
+=======
+
+[![Build Status](https://travis-ci.org/kpaxqin/react-starter-project.svg?branch=master)](https://travis-ci.org/kpaxqin/react-starter-project)
+
 
 Try to show you how to build a REAL project with `React + Redux` by cover Following things:
 
