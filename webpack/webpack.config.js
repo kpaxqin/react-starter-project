@@ -1,19 +1,20 @@
 /**
  * Created by jwqin on 11/15/15.
  */
+
 var path = require('path');
 var webpack = require('webpack');
-var config = require('config');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var config = require('./nodeConfig');
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+var rootPath = path.resolve(__dirname, '../');
 
 module.exports = {
   entry: [
     './src/index.jsx'
   ],
   output: {
-    path: path.join(__dirname, '_dist/'),
+    path: path.join(rootPath, '_dist/'),
     filename: 'bundle-[hash].js',
     publicPath: '/assets/',
     chunkFilename: "[name]-[hash].js"
@@ -23,15 +24,15 @@ module.exports = {
       test: /\.jsx?$/,
       loaders: ['react-hot', 'babel'],
       exclude: /node_modules/,
-      include: __dirname
+      include: rootPath
     }, {
       test: /\.css?$/,
       loaders: ['style', 'raw'],
-      include: __dirname
+      include: rootPath
     }, {
       test: /\.scss$/,
-      loader: "style!css!sass?includePaths[]=" + path.resolve(__dirname, "./node_modules/"),
-      include: __dirname
+      loader: "style!css!sass?includePaths[]=" + path.resolve(rootPath, "./node_modules/"),
+      include: rootPath
     }, {
       test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff2?$|\.ttf|\.eot$/,
       loader: "file"
