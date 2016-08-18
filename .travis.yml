@@ -9,3 +9,5 @@ install:
     npm install --registry http://registry.npmjs.org
 script:
     - npm run test
+after_script:
+    - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
