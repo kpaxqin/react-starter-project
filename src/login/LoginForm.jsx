@@ -2,8 +2,8 @@ import React from 'react';
 import { FormControl as Input, FormGroup, Button } from 'react-bootstrap';
 import { reduxForm, propTypes } from 'redux-form';
 
-function LoginForm() {
-  const { fields: { name }, handleSubmit } = this.props;
+function LoginForm(props) {
+  const { fields: { name }, handleSubmit } = props;
 
   return (
     <form onSubmit={handleSubmit}>

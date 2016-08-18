@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 
-export default function App() {
+export default function App(props) {
   return (
     <div>
       app
       <div>
-        {this.props.children}
+        {props.children}
       </div>
     </div>
   );
 }
+
+App.propTypes = {
+  children: PropTypes.node,
+};
+
