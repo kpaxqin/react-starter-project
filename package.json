@@ -10,7 +10,7 @@
     "clean": "rimraf ./_dist",
     "lint": "eslint 'src/**/*.js?(x)'",
     "test:unit": "mocha",
-    "travis": "istanbul cover --report html ./node_modules/.bin/_mocha"
+    "test:coverage": "istanbul cover --report html ./node_modules/.bin/_mocha"
   },
   "author": "kpaxqin",
   "license": "MIT",

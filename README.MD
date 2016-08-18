@@ -1,7 +1,8 @@
-Redux example
+React start project
 =======
 
 [![Build Status](https://travis-ci.org/kpaxqin/react-starter-project.svg?branch=master)](https://travis-ci.org/kpaxqin/react-starter-project)
+[![Coverage Status](https://coveralls.io/repos/github/kpaxqin/react-starter-project/badge.svg?branch=master)](https://coveralls.io/github/kpaxqin/react-starter-project?branch=master)
 
 
 Try to show you how to build a REAL project with `React + Redux` by cover Following things:
@@ -17,6 +18,10 @@ Try to show you how to build a REAL project with `React + Redux` by cover Follow
 * Auth: control the render of component by user's authority
 * CI: lint -> unit test -> e2e test
 
+
+## How to run it ?
+Run `npm start` for dev and `npm run build` for production bundle
+
 ## Basic Architecture
-We choose `react + redux + react-router` to build our application.
+`react + redux + react-router` to build our application.
 
