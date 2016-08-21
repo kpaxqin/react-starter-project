@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.join(rootPath, '_dist/'),
     filename: 'bundle-[hash].js',
-    publicPath: '/assets/',
+    publicPath: './',
     chunkFilename: "[name]-[hash].js"
   },
   module: {
