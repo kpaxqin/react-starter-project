@@ -9,15 +9,9 @@ const style = {
 };
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onSubmit() {
+  onSubmit = () => {
     this.props.push('/dashboard');
-  }
+  };
 
   render() {
     return (
