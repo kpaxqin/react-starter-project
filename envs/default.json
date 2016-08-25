@@ -1,6 +1,6 @@
 {
   "server": {
-    "url": ""
+    "url": "http://localhost:8082"
   },
   "license": {
     "baiduMap": ""
