@@ -1,18 +1,32 @@
 import React from 'react';
-import { FormControl as Input, FormGroup, Button } from 'react-bootstrap';
+import { FormControl as Input, FormGroup, ControlLabel, Button } from 'react-bootstrap';
 import { reduxForm, propTypes } from 'redux-form';
 
-function LoginForm(props) {
-  const { fields: { name }, handleSubmit } = props;
+function showError(field) {
+  return field.touched && field.error;
+}
 
+function LoginForm(props) {
+  const { fields: { username, password }, handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <FormGroup validationState={name.error ? 'error' : undefined}>
+      <FormGroup validationState={showError(username) ? 'error' : undefined}>
         <Input
           type="text"
-          label="name"
-          value={name.value || ''}
-          onChange={name.onChange}
+          label="username"
+          value={username.value}
+          onChange={username.onChange}
+        />
+        {
+          showError(username) && <ControlLabel>{username.error}</ControlLabel>
+        }
+      </FormGroup>
+      <FormGroup>
+        <Input
+          type="password"
+          label="password"
+          value={password.value}
+          onChange={password.onChange}
         />
       </FormGroup>
       <Button
@@ -28,16 +42,21 @@ LoginForm.propTypes = propTypes;
 
 const ReduxLoginForm = reduxForm({
   form: 'login',
-  fields: ['name'],
+  fields: ['username', 'password'],
   validate(value) {
     const errors = {};
-    if (value.name === '1234') {
-      errors.name = 'error';
+    if (!value.username) {
+      errors.username = 'User name is required';
     }
 
     return errors;
   },
-})(LoginForm);
+}, () => ({
+  initialValues: {
+    username: 'admin',
+    password: '123',
+  },
+}))(LoginForm);
 
 export default ReduxLoginForm;
 

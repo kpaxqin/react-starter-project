@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { routerActions } from 'react-router-redux';
 import LoginForm from './LoginForm';
+import actions from './actions';
 
 const style = {
   width: 500,
@@ -9,8 +9,8 @@ const style = {
 };
 
 class Login extends Component {
-  onSubmit = () => {
-    this.props.push('/dashboard');
+  onSubmit = (user) => {
+    this.props.loginAction(user);
   };
 
   render() {
@@ -25,7 +25,9 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  push: PropTypes.func,
+  loginAction: PropTypes.func,
 };
 
-export default connect(state => state, routerActions)(Login);
+export default connect(state => state, {
+  ...actions,
+})(Login);
