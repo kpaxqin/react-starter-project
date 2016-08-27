@@ -3,6 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 import Login from './login/Login.jsx';
 import Dashboard from './dashboard';
 import App from './App';
+import connectAuthCheck from './shared/auth';
 
 const routes = (
   <Route
@@ -15,7 +16,7 @@ const routes = (
     />
     <Route
       path="dashboard"
-      component={Dashboard}
+      component={connectAuthCheck(Dashboard)}
     />
     <IndexRoute component={Login} />
   </Route>

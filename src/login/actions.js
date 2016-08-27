@@ -2,6 +2,7 @@ import { createPromiseThunk } from 'redux-promise-thunk';
 import { startAsyncValidation, stopAsyncValidation } from 'redux-form';
 import { routerActions } from 'react-router-redux';
 import auth from '../shared/api/auth';
+import userStorage from '../shared/storage/user';
 
 const LOGIN_FORM = 'login';
 function loginAction(user) {
@@ -11,10 +12,11 @@ function loginAction(user) {
         .then(data => {
           dispatch(stopAsyncValidation(LOGIN_FORM));
 
-          return data;
+          return userStorage.setUser(data);
         })
-        .then(() => {
+        .then(data => {
           dispatch(routerActions.push('/dashboard'));
+          return data;
         })
         .catch(err => {
           dispatch(stopAsyncValidation(LOGIN_FORM, {

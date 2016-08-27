@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import User from '../../user';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { routerActions } from 'react-router-redux';
+import userStorage from '../storage/user';
 
-function connectAuthCheck(roles, Content) {
-  return class AuthedComponent extends Component {
+function connectAuthCheck(Content) {
+  class CheckLogin extends Component {
     constructor() {
       super();
       this.state = {
@@ -10,11 +12,14 @@ function connectAuthCheck(roles, Content) {
       };
     }
     componentWillMount() {
-      if (User.isLogin() && User.hasRole(roles)) {
-        this.setState({ authed: true });
-      } else {
-        redirect('403');
-      }
+      userStorage.getUser()
+        .then(user => {
+          this.props.saveUser(user);
+          this.setState({ authed: true });
+        })
+        .catch(() => {
+          this.props.replace('login');
+        });
     }
     render() {
       const { authed } = this.state;
@@ -22,15 +27,23 @@ function connectAuthCheck(roles, Content) {
         authed ? <Content {...this.props} /> : null
       );
     }
-  };
-}
+  }
 
-/*
-  <Route
-   path="dashboard"
-   component={connectAuthCheck(['manager', 'admin'], Dashboard)}
-  />
-*/
+  CheckLogin.propTypes = {
+    saveUser: PropTypes.func.isRequired,
+    replace: PropTypes.func.isRequired,
+  };
+
+  return connect(state => state, {
+    ...routerActions,
+    saveUser(user) {
+      return {
+        type: 'USER_FETCHED',
+        payload: user,
+      };
+    },
+  })(CheckLogin);
+}
 
 export default connectAuthCheck;
 
