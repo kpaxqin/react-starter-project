@@ -9,20 +9,15 @@ function loginAction(user) {
   return function loginActionThunk(dispatch) {
     const promiseThunk = createPromiseThunk('LOGIN', () => auth
         .login(user)
-        .then(data => {
+        .then(data => userStorage.setUser(data))
+        .then(() => {
           dispatch(stopAsyncValidation(LOGIN_FORM));
-
-          return userStorage.setUser(data);
-        })
-        .then(data => {
-          dispatch(routerActions.push('/dashboard'));
-          return data;
+          dispatch(routerActions.push('/'));
         })
         .catch(err => {
           dispatch(stopAsyncValidation(LOGIN_FORM, {
             username: err.message,
           }));
-          throw err;
         }));
 
     dispatch(startAsyncValidation(LOGIN_FORM));

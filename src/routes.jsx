@@ -3,23 +3,26 @@ import { Route, IndexRoute } from 'react-router';
 import Login from './login/Login.jsx';
 import Dashboard from './dashboard';
 import App from './App';
-import connectAuthCheck from './shared/auth';
+import { ensureLoggedIn, ensureNotLoggedIn } from './shared/auth';
 
-const routes = (
-  <Route
-    path="/"
-    component={App}
-  >
+function getRoutes(store) {
+  return (
     <Route
-      path="login"
-      component={Login}
-    />
-    <Route
-      path="dashboard"
-      component={connectAuthCheck(Dashboard)}
-    />
-    <IndexRoute component={Login} />
-  </Route>
-);
+      component={App}
+    >
+      <Route
+        path="/login"
+        onEnter={ensureNotLoggedIn}
+        component={Login}
+      />
+      <Route
+        path="/"
+        onEnter={ensureLoggedIn(store)}
+        component={Dashboard}
+      />
+      <IndexRoute component={Login} />
+    </Route>
+  );
+}
 
-export default routes;
+export default getRoutes;

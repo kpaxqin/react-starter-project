@@ -45,5 +45,33 @@ function connectAuthCheck(Content) {
   })(CheckLogin);
 }
 
+export function ensureLoggedIn(store) {
+  return (nextState, replace, next) => {
+    userStorage.getUser()
+      .then(user => {
+        store.dispatch({
+          type: 'USER_ENSURED',
+          payload: user,
+        });
+        next();
+      })
+      .catch(() => {
+        replace('/login');
+        next();
+      });
+  };
+}
+
+export function ensureNotLoggedIn(nextState, replace, next) {
+  userStorage.getUser()
+    .then(() => {
+      replace('/');
+      next();
+    })
+    .catch(() => {
+      next();
+    });
+}
+
 export default connectAuthCheck;
 
