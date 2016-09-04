@@ -36,12 +36,6 @@ function connectAuthCheck(Content) {
 
   return connect(state => state, {
     ...routerActions,
-    saveUser(user) {
-      return {
-        type: 'USER_FETCHED',
-        payload: user,
-      };
-    },
   })(CheckLogin);
 }
 

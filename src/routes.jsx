@@ -1,6 +1,6 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
-import Login from './login/Login.jsx';
+import { Route } from 'react-router';
+import account from './account';
 import Dashboard from './dashboard';
 import App from './App';
 import { ensureLoggedIn, ensureNotLoggedIn } from './shared/auth';
@@ -13,14 +13,13 @@ function getRoutes(store) {
       <Route
         path="/login"
         onEnter={ensureNotLoggedIn}
-        component={Login}
+        component={account.Login}
       />
       <Route
         path="/"
         onEnter={ensureLoggedIn(store)}
         component={Dashboard}
       />
-      <IndexRoute component={Login} />
     </Route>
   );
 }

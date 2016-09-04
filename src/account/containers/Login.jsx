@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import LoginForm from './LoginForm';
-import actions from './actions';
+import LoginForm from '../components/LoginForm';
+import actions from '../actions';
 
 const style = {
   width: 500,
