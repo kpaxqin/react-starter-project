@@ -1,4 +1,4 @@
-import { createPromiseThunk } from 'redux-promise-thunk';
+import { createAsyncAction } from 'redux-action-tools';
 import { startAsyncValidation, stopAsyncValidation } from 'redux-form';
 import { routerActions } from 'react-router-redux';
 import auth from '../../shared/api/auth';
@@ -8,7 +8,7 @@ import actionTypes from '../constants/actionTypes';
 const LOGIN_FORM = 'login';
 function loginAction(user) {
   return function loginActionThunk(dispatch) {
-    const promiseThunk = createPromiseThunk(actionTypes.LOGIN, () => auth
+    const promiseThunk = createAsyncAction(actionTypes.LOGIN, () => auth
         .login(user)
         .then(data => userStorage.setUser(data))
         .then(data => {

@@ -10,44 +10,7 @@ export function getActionTypes(prefix, types) {
   }), {});
 }
 
-class ActionHandler {
-  constructor() {
-    this.currentAction = undefined;
-    this.handlers = {};
-  }
-  when(actionType, handler) {
-    this.currentAction = actionType;
-    this.handlers[actionType] = handler;
-    return this;
-  }
-  done(handler) {
-    this.handlers[`${this.currentAction}_COMPLETED`] = handler;
-    return this;
-  }
-  failed(handler) {
-    this.handlers[`${this.currentAction}_FAILED`] = handler;
-    return this;
-  }
-  build(initValue = null) {
-    return (state = initValue, action) => {
-      // debugger
-      const handler = this.handlers[action.type];
-
-      if (typeof handler === 'function') {
-        return handler(state, action);
-      }
-
-      return state;
-    };
-  }
-}
-
-export function handleActions() {
-  return new ActionHandler();
-}
-
 export default {
-  handleActions,
   getActionTypes,
 };
 
