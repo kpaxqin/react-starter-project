@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { routerActions } from 'react-router-redux';
 import userStorage from '../storage/user';
+import accountActions from '../../account/actions';
 
 function connectAuthCheck(Content) {
   class CheckLogin extends Component {
@@ -43,10 +44,7 @@ export function ensureLoggedIn(store) {
   return (nextState, replace, next) => {
     userStorage.getUser()
       .then(user => {
-        store.dispatch({
-          type: 'USER_ENSURED',
-          payload: user,
-        });
+        store.dispatch(accountActions.ensureUser(user));
         next();
       })
       .catch(() => {

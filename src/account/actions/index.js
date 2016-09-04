@@ -1,4 +1,4 @@
-import { createAsyncAction } from 'redux-action-tools';
+import { createAction, createAsyncAction } from 'redux-action-tools';
 import { startAsyncValidation, stopAsyncValidation } from 'redux-form';
 import { routerActions } from 'react-router-redux';
 import auth from '../../shared/api/auth';
@@ -27,6 +27,9 @@ function loginAction(user) {
   };
 }
 
+const ensureUser = createAction(actionTypes.ENSURE_USER);
+
 export default {
   loginAction,
+  ensureUser,
 };
