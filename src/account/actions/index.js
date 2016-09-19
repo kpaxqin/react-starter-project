@@ -28,7 +28,7 @@ function loginAction(user) {
 }
 
 const ensureUser = createAction(actionTypes.ENSURE_USER);
-const logout = createAction(actionTypes.LOGOUT);
+const logout = createAsyncAction(actionTypes.LOGOUT, () => userStorage.removeUser());
 
 export default {
   loginAction,
