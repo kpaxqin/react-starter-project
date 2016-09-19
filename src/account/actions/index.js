@@ -28,8 +28,10 @@ function loginAction(user) {
 }
 
 const ensureUser = createAction(actionTypes.ENSURE_USER);
+const logout = createAction(actionTypes.LOGOUT);
 
 export default {
   loginAction,
   ensureUser,
+  logout,
 };
