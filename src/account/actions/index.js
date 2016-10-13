@@ -6,26 +6,25 @@ import userStorage from '../../shared/storage/user';
 import actionTypes from '../constants/actionTypes';
 
 const LOGIN_FORM = 'login';
-function loginAction(user) {
-  return function loginActionThunk(dispatch) {
-    const promiseThunk = createAsyncAction(actionTypes.LOGIN, () => auth
-        .login(user)
-        .then(data => userStorage.setUser(data))
-        .then(data => {
-          dispatch(stopAsyncValidation(LOGIN_FORM));
-          dispatch(routerActions.push('/'));
-          return data;
-        })
-        .catch(err => {
-          dispatch(stopAsyncValidation(LOGIN_FORM, {
-            username: err.message,
-          }));
-        }));
 
-    dispatch(startAsyncValidation(LOGIN_FORM));
-    dispatch(promiseThunk(user));
-  };
-}
+const loginAction = createAsyncAction(actionTypes.LOGIN, (user, dispatch) => {
+  dispatch(startAsyncValidation(LOGIN_FORM));
+
+  return auth
+    .login(user)
+    .then(data => userStorage.setUser(data))
+    .then(data => {
+      dispatch(stopAsyncValidation(LOGIN_FORM));
+      dispatch(routerActions.push('/'));
+      return data;
+    })
+    .catch(err => {
+      dispatch(stopAsyncValidation(LOGIN_FORM, {
+        username: err.message,
+      }));
+      throw err;
+    });
+});
 
 const ensureUser = createAction(actionTypes.ENSURE_USER);
 const logout = createAsyncAction(actionTypes.LOGOUT, () => userStorage.removeUser());
