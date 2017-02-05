@@ -17,29 +17,42 @@ module.exports = {
     path: path.join(rootPath, '_dist/'),
     filename: 'bundle-[hash].js',
     publicPath: './',
-    chunkFilename: "[name]-[hash].js"
+    chunkFilename: '[name]-[hash].js'
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
-      loaders: ['react-hot', 'babel'],
+      use: ['react-hot-loader', 'babel-loader'],
       exclude: /node_modules/,
       include: rootPath
     }, {
       test: /\.css?$/,
-      loaders: ['style', 'raw'],
+      use: ['style-loader', 'raw-loader'],
       include: rootPath
     }, {
       test: /\.scss$/,
-      loader: "style!css!sass?includePaths[]=" + path.resolve(rootPath, "./node_modules/"),
-      include: rootPath
+      use: [
+        {
+          loader: 'style-loader',
+        },
+        {
+          loader: 'css-loader',
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            includePaths: [path.resolve(rootPath, './node_modules/')],
+          },
+        },
+      ],
+      include: rootPath,
     }, {
       test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff2?$|\.ttf|\.eot$/,
-      loader: "file"
+      use: 'file-loader'
     }]
   },
   resolve: {
-    extensions: ['', '.jsx', '.js']
+    extensions: ['.jsx', '.js']
   },
   plugins: [
     new webpack.DefinePlugin({

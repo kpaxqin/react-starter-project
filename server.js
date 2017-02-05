@@ -3,8 +3,8 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack/webpack.dev.config');
 
-var devserver = config.devserver;
-var serverUrl = devserver.hostname + ':' + devserver.port;
+var devServer = config.devServer;
+var serverUrl = devServer.hostname + ':' + devServer.port;
 
 var publicPath = config.output.publicPath;
 
@@ -12,7 +12,7 @@ new WebpackDevServer(webpack(config), {
   publicPath: path.isAbsolute(publicPath) ? publicPath : path.resolve('/', publicPath),
   hot: true,
   historyApiFallback: true
-}).listen(devserver.port, devserver.hostname, function (err, result) {
+}).listen(devServer.port, devServer.host, function (err, result) {
   if (err) {
     return console.log(err);
   }
