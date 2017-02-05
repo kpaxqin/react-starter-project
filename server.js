@@ -2,9 +2,10 @@ var path = require('path');
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack/webpack.dev.config');
+var openBrowser = require('react-dev-utils/openBrowser');
 
 var devServer = config.devServer;
-var serverUrl = devServer.hostname + ':' + devServer.port;
+var serverUrl = `http://${devServer.host}:${devServer.port}`;
 
 var publicPath = config.output.publicPath;
 
@@ -17,5 +18,11 @@ new WebpackDevServer(webpack(config), {
     return console.log(err);
   }
 
-  console.log(`Server started, open http://${serverUrl} in your browser pls`);
+  console.log(`Server started on ${serverUrl}`);
+
+  if (openBrowser(serverUrl)) {
+    console.log('Browser tab has been opened!');
+  } else {
+    console.warn('Failed to open browser tab, please open it by yourself');
+  }
 });
