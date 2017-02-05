@@ -16,7 +16,7 @@ module.exports = _.merge({}, baseConfig, {
     port
   },
   entry: [
-    `webpack-dev-server/client?http://${host}:${port}`, // WebpackDevServer host and port
+    `webpack-dev-server/client?`, // WebpackDevServer host and port
     'webpack/hot/only-dev-server'// "only" prevents reload on syntax errors
   ].concat(baseConfig.entry),
   plugins: [new webpack.HotModuleReplacementPlugin()].concat(baseConfig.plugins)
