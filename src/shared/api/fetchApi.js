@@ -12,7 +12,8 @@ function fetchApi(url, config) {
     },
     ...config,
   };
-  const finalUrl = config.useBaseUrl ? `${baseUrl}/${url}` : url;
+  // TODO: ignore baseUrl when the url string contains protocol like 'http://'
+  const finalUrl = config.ignoreBaseUrl ? url : `${baseUrl}/${url}`;
 
   return fetch(finalUrl, finalConfig)
   .then(response => {
