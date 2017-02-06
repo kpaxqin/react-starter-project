@@ -30,7 +30,7 @@
     "redux": "^3.0.4",
     "redux-action-tools": "^1.2.0",
     "redux-actions": "^0.9.1",
-    "redux-form": "^4.0.3",
+    "redux-form": "^5.3.4",
     "redux-logger": "^2.0.4",
     "redux-thunk": "^2.0.0",
     "whatwg-fetch": "^1.0.0"
