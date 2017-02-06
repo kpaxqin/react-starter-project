@@ -1,7 +1,8 @@
 import 'whatwg-fetch';
+import _ from 'lodash';
 import userStorage from '../storage/user';
 
-const baseUrl = process.env.config.server.url;
+const baseUrl = _.get(process.env.config, 'server.url');
 
 function fetchApi(url, config) {
   const finalConfig = {
