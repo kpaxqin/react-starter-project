@@ -1,13 +1,13 @@
 import { expect } from 'chai'
 import { mount } from 'enzyme'
 import React from 'react'
-import Dashboard from '../index'
+import { DashboardComponent } from '../index'
 
 describe('Dashboard index', () => {
   it(`Should say 'hello world'`, () => {
-    const wrapper = mount(<Dashboard />);
+    const wrapper = mount(<DashboardComponent logout={() => {}}/>);
 
-    expect(wrapper).to.have.text('Hello world');
+    expect(wrapper).to.contains.text('Hello world');
   })
 });
 
