@@ -27,7 +27,13 @@ const loginAction = createAsyncAction(actionTypes.LOGIN, (user, dispatch) => {
 });
 
 const ensureUser = createAction(actionTypes.ENSURE_USER);
-const logout = createAsyncAction(actionTypes.LOGOUT, () => userStorage.removeUser());
+const logout = createAsyncAction(actionTypes.LOGOUT, (data, dispatch) => {
+  return userStorage.removeUser()
+    .then(() => {
+      dispatch(routerActions.push('/login'));
+      return null;
+    });
+});
 
 export default {
   loginAction,
