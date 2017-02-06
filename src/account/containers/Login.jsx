@@ -25,7 +25,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  loginAction: PropTypes.func,
+  loginAction: PropTypes.func.isRequired,
 };
 
 export default connect(state => state, {

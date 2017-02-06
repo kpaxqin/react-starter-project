@@ -13,12 +13,12 @@ const loginAction = createAsyncAction(actionTypes.LOGIN, (user, dispatch) => {
   return auth
     .login(user)
     .then(data => userStorage.setUser(data))
-    .then(data => {
+    .then((data) => {
       dispatch(stopAsyncValidation(LOGIN_FORM));
       dispatch(routerActions.push('/'));
       return data;
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch(stopAsyncValidation(LOGIN_FORM, {
         username: err.message,
       }));
@@ -27,13 +27,12 @@ const loginAction = createAsyncAction(actionTypes.LOGIN, (user, dispatch) => {
 });
 
 const ensureUser = createAction(actionTypes.ENSURE_USER);
-const logout = createAsyncAction(actionTypes.LOGOUT, (data, dispatch) => {
-  return userStorage.removeUser()
+const logout = createAsyncAction(actionTypes.LOGOUT, (data, dispatch) => userStorage.removeUser()
     .then(() => {
       dispatch(routerActions.push('/login'));
       return null;
-    });
-});
+    }),
+);
 
 export default {
   loginAction,

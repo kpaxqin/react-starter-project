@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
-const NavigationBar = (props) => (
+const NavigationBar = props => (
   <Navbar inverse>
     <Navbar.Header>
       <Navbar.Brand>

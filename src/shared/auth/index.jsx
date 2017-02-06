@@ -14,7 +14,7 @@ function connectAuthCheck(Content) {
     }
     componentWillMount() {
       userStorage.getUser()
-        .then(user => {
+        .then((user) => {
           this.props.saveUser(user);
           this.setState({ authed: true });
         })
@@ -43,7 +43,7 @@ function connectAuthCheck(Content) {
 export function ensureLoggedIn(store) {
   return (nextState, replace, next) => {
     userStorage.getUser()
-      .then(user => {
+      .then((user) => {
         store.dispatch(accountActions.ensureUser(user));
         next();
       })

@@ -12,6 +12,6 @@ export default function App(props) {
 }
 
 App.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 

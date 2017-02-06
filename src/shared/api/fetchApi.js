@@ -16,7 +16,7 @@ function fetchApi(url, config) {
   const finalUrl = config.ignoreBaseUrl ? url : `${baseUrl}/${url}`;
 
   return fetch(finalUrl, finalConfig)
-  .then(response => {
+  .then((response) => {
     const responseJson = response.json();
     const isSuccess = response.status >= 200 && response.status < 300;
     if (!isSuccess) {

@@ -7,14 +7,14 @@ import { Router, hashHistory } from 'react-router';
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
-import getRoutes from './routes.jsx';
+import getRoutes from './routes';
 import reducer from './reducer';
 import './index.scss';
 
 const store = applyMiddleware(
   routerMiddleware(hashHistory),
   thunk,
-  createLogger()
+  createLogger(),
 )(createStore)(reducer);
 
 const enhancedHistory = syncHistoryWithStore(hashHistory, store);
@@ -27,7 +27,7 @@ render(
       {routes}
     </Router>
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('app'),
 );
 
 

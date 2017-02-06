@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import accountActions from '../account/actions';
 import Navigation from './components/NavigationBar';
 
-const Dashboard = (props) => (
+const Dashboard = props => (
   <div className="dashboard">
     <Navigation {...props} />
   </div>
