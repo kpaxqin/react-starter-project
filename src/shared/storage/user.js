@@ -22,9 +22,16 @@ function getUser() {
   return user ? Promise.resolve(user) : Promise.reject();
 }
 
+function getToken() {
+  // TODO: Put token to another storage item so we don't call JSON.parse every time
+  const user = JSON.parse(window.localStorage.getItem(USER_STORAGE_KEY));
+  return user ? user.token : undefined;
+}
+
 export default {
   setUser,
   removeUser,
   getUser,
+  getToken,
 };
 
